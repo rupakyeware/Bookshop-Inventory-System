@@ -33,6 +33,7 @@ void Book::addBook()
 
     cout << "Enter Book author" << endl;
     cin >> book_author;
+    transform(book_author.begin(), book_author.end(), book_author.begin(), ::tolower);
 
     cout << "Enter Book genre" << endl;
     cin >> book_genre;
@@ -50,7 +51,11 @@ void Book::searchBook()
 }
 void Book::displayBook()
 {
-    
+    cout << "Name: " << book_title << endl;
+    cout << "Id: " << book_id << endl;
+    cout << "Author: " << book_author << endl;
+    cout << "Genre: " << book_genre << endl;
+    cout << "Price: " << book_price << endl;
 }
 
 int Book::getId()
@@ -61,40 +66,42 @@ int Book::getId()
 int main()
 {
     Book b1[MAX];
-    int ch, n;
-    cout << "Enter your choice"
-         << "1.add books\n 2.delete book\n 3.search \n4.display\n 5.exit"
-         << endl;
-    cin >> ch;
-    switch (ch)
+    while (true)
     {
-    case 1: //Adding book
-        cout << "Enter number of books" << endl;
-        cin >> n;
-        for (int i = 0; i < n; i++)
+        cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Print books\n5. Exit\n";
+        int ch, n;
+        cin >> ch;
+        switch (ch)
         {
-            b1[i].addBook();
+        case 1: //Adding book
+            cout << "Enter number of books" << endl;
+            cin >> n;
+            for (int i = 0; i < n; i++)
+            {
+                b1[i].addBook();
+            }
+
+            break;
+
+        case 2: //Delete
+
+            break;
+
+        case 3: //Search
+            break;
+
+        case 4: //Display
+            for (int i = 0; i < n; i++)
+            {
+                b1[i].displayBook();
+            }
+            break;
+
+        case 5: //Exit
+            break;
+
+        default:
+            break;
         }
-
-        break;
-
-    case 2: //Delete
-
-        break;
-
-    case 3: //Search
-        break;
-
-    case 4: //Display
-        for (int i = 0; i < n; i++)
-        {
-            b1[i].displayBook();
-        }
-        break;
-
-    case 5: //Exit
-        break;
-    default:
-        break;
     }
 }
