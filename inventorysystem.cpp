@@ -1,4 +1,8 @@
+#include <cctype>
+#include <string>
+#include <algorithm>
 #include <iostream>
+
 #define MAX 20
 using namespace std;
 class Book
@@ -22,12 +26,17 @@ void Book::addBook()
 
     cout << "Enter Book name" << endl;
     cin >> book_title;
+    transform(book_title.begin(), book_title.end(), book_title.begin(), ::tolower);
+
     cout << "Enter Book id" << endl;
     cin >> book_id;
+
     cout << "Enter Book author" << endl;
     cin >> book_author;
+
     cout << "Enter Book genre" << endl;
     cin >> book_genre;
+
     cout << "Enter Book price" << endl;
     cin >> book_price;
 }
@@ -41,7 +50,9 @@ void Book::searchBook()
 }
 void Book::displayBook()
 {
+    
 }
+
 int Book::getId()
 {
     return book_id;
@@ -57,7 +68,7 @@ int main()
     cin >> ch;
     switch (ch)
     {
-    case 1:
+    case 1: //Adding book
         cout << "Enter number of books" << endl;
         cin >> n;
         for (int i = 0; i < n; i++)
@@ -67,23 +78,21 @@ int main()
 
         break;
 
-    case 2:
+    case 2: //Delete
 
         break;
 
-    case 3:
+    case 3: //Search
         break;
 
-    case 4:
-
-        break;
-
-    case 5:
-
+    case 4: //Display
         for (int i = 0; i < n; i++)
         {
             b1[i].displayBook();
         }
+        break;
+
+    case 5: //Exit
         break;
     default:
         break;
