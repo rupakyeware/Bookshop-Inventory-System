@@ -19,6 +19,7 @@ public:
     void deleteBook();
     void searchBook();
     void displayBook();
+    void printBook();
     int getId();
 };
 void Book::addBook()
