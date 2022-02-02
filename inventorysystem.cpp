@@ -149,11 +149,9 @@ int main()
             {
                 b1[i].addBook();
             }
-
             break;
 
         case 2: //Delete
-
             break;
 
         case 3: //Search
@@ -167,9 +165,14 @@ int main()
             break;
 
         case 5: //Print
+        {
             int len = sizeof(b1) / sizeof(b1[0]);
             printBook(b1, len);
             break;
+        }
+
+        default:
+            exit(0);
         }
     }
 }
