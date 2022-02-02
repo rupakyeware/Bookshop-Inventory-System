@@ -1,3 +1,6 @@
+//A basic C++ program that manages a bookshop inventory
+
+//Header files
 #include <cctype>
 #include <algorithm>
 #include <iostream>
@@ -5,6 +8,8 @@
 #include <iomanip>
 
 using namespace std;
+
+//Book class to handle all member functions and variables
 class Book
 {
 private:
@@ -26,7 +31,7 @@ public:
     string getGenre();
     int getPrice();
 };
-void Book::addBook()
+void Book::addBook() //Add book to array
 {
     cout << "Enter Book name" << endl;
     cin >> book_title;
@@ -47,15 +52,15 @@ void Book::addBook()
     cin >> book_price;
 }
 
-void Book::deleteBook()
+void Book::deleteBook() //Delete book from array
 {
 }
 
-void Book::searchBook()
+void Book::searchBook() //Find book in arrat
 {
 }
 
-void Book::displayBook()
+void Book::displayBook() //Display all books in console window
 {
     cout << "\n\nName: " << book_title << endl;
     cout << "Id: " << book_id << endl;
@@ -64,7 +69,7 @@ void Book::displayBook()
     cout << "Price: " << book_price << endl;
 }
 
-void printBook(Book arr[], int s)
+void printBook(Book arr[], int s) //Print all books in a text file
 {
     string outFile = "book_details.txt";
     ofstream out;
@@ -132,6 +137,7 @@ int Book::getPrice()
     return book_price;
 }
 
+//Driver
 int main()
 {
     Book b1[1];
