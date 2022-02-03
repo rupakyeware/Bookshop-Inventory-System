@@ -25,7 +25,7 @@ public:
     void addBook();
     void deleteBook();
     void searchBook();
-    void displayBook(Book[], int);
+    void displayBook(Book[], int, int);
     void printBook(Book[], int);
 
     int getId();
@@ -89,7 +89,7 @@ void displayBook(Book arr[], int s) //Display all books in console window
     }
 }
 
-void printBook(Book arr[], int s) //Print all books in a text file
+void displayBook(Book arr[], int s, int ch) //Display all books in console window
 {
     string outFile = "book_details.txt";
     ofstream out;
@@ -208,7 +208,7 @@ int main()
 
         case 5: //Print
         {
-            printBook(book, booksAdded);
+            displayBook(book, booksAdded, 1);
             break;
         }
 
