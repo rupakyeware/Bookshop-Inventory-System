@@ -25,8 +25,8 @@ public:
     void addBook();
     void deleteBook();
     void searchBook();
+    void displayBook(Book[], int);
     void displayBook(Book[], int, int);
-    void printBook(Book[], int);
 
     int getId();
     string getTitle();
@@ -89,30 +89,13 @@ void displayBook(Book arr[], int s) //Display all books in console window
     }
 }
 
-void displayBook(Book arr[], int s, int ch) //Display all books in console window
+void displayBook(Book arr[], int s, int ch) //Display all books in txt file
 {
     string outFile = "book_details.txt";
     ofstream out;
     out.open(outFile, std::ios::out);
 
-    out
-        << left
-        << setw(10)
-        << "Title"
-        << left
-        << setw(10)
-        << "Id"
-        << left
-        << setw(10)
-        << "Author"
-        << left
-        << setw(10)
-        << "Genre"
-        << left
-        << setw(10)
-        << "Price"
-        << endl;
-    out << "---------------------------------------------" << endl;
+    printHeader();
 
     for (int i = 0; i < s; i++)
     {
@@ -134,6 +117,28 @@ void displayBook(Book arr[], int s, int ch) //Display all books in console windo
             << arr[i].getPrice()
             << endl;
     }
+}
+
+void printHeader()
+{
+    cout
+        << left
+        << setw(10)
+        << "Title"
+        << left
+        << setw(10)
+        << "Id"
+        << left
+        << setw(10)
+        << "Author"
+        << left
+        << setw(10)
+        << "Genre"
+        << left
+        << setw(10)
+        << "Price"
+        << endl;
+    cout << "---------------------------------------------" << endl;
 }
 
 int Book::getId()
@@ -183,25 +188,7 @@ int main()
             break;
 
         case 4: //Display
-            cout
-                << left
-                << setw(10)
-                << "Title"
-                << left
-                << setw(10)
-                << "Id"
-                << left
-                << setw(10)
-                << "Author"
-                << left
-                << setw(10)
-                << "Genre"
-                << left
-                << setw(10)
-                << "Price"
-                << endl;
-            cout << "---------------------------------------------" << endl;
-
+            printHeader();
             displayBook(book, booksAdded);
 
             break;
