@@ -1,3 +1,3 @@
 Title     Id        Author    Genre     Price     
+---------------------------------------------
 book1     101       author1   suspense  250       
-book2     102       author2   romance   520       

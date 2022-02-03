@@ -25,8 +25,8 @@ public:
     void addBook();
     void deleteBook();
     void searchBook();
-    void displayBook();
-    void printBook();
+    void displayBook(Book[], int);
+    void printBook(Book[], int);
 
     int getId();
     string getTitle();
@@ -65,13 +65,28 @@ void Book::searchBook() //Find book in arrat
 {
 }
 
-void Book::displayBook() //Display all books in console window
+void displayBook(Book arr[], int s) //Display all books in console window
 {
-    cout << "\n\nName: " << book_title << endl;
-    cout << "Id: " << book_id << endl;
-    cout << "Author: " << book_author << endl;
-    cout << "Genre: " << book_genre << endl;
-    cout << "Price: " << book_price << endl;
+    for (int i = 0; i < s; i++)
+    {
+        cout
+            << left
+            << setw(10)
+            << arr[i].getTitle()
+            << left
+            << setw(10)
+            << arr[i].getId()
+            << left
+            << setw(10)
+            << arr[i].getAuthor()
+            << left
+            << setw(10)
+            << arr[i].getGenre()
+            << left
+            << setw(10)
+            << arr[i].getPrice()
+            << endl;
+    }
 }
 
 void printBook(Book arr[], int s) //Print all books in a text file
@@ -97,6 +112,7 @@ void printBook(Book arr[], int s) //Print all books in a text file
         << setw(10)
         << "Price"
         << endl;
+    out << "---------------------------------------------" << endl;
 
     for (int i = 0; i < s; i++)
     {
@@ -151,18 +167,13 @@ int main()
     while (true)
     {
         cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Exit\n";
-        int ch, n;
+        int ch;
         cin >> ch;
         switch (ch)
         {
         case 1: //Adding book
-            cout << "Enter number of books" << endl;
-            cin >> n;
-            for (int i = 0; i < n; i++)
-            {
-                book[i].addBook();
-                booksAdded++;
-            }
+            book[booksAdded].addBook();
+            booksAdded++;
             break;
 
         case 2: //Delete
@@ -172,10 +183,27 @@ int main()
             break;
 
         case 4: //Display
-            for (int i = 0; i < n; i++)
-            {
-                book[i].displayBook();
-            }
+            cout
+                << left
+                << setw(10)
+                << "Title"
+                << left
+                << setw(10)
+                << "Id"
+                << left
+                << setw(10)
+                << "Author"
+                << left
+                << setw(10)
+                << "Genre"
+                << left
+                << setw(10)
+                << "Price"
+                << endl;
+            cout << "---------------------------------------------" << endl;
+
+            displayBook(book, booksAdded);
+
             break;
 
         case 5: //Print
@@ -185,7 +213,7 @@ int main()
         }
 
         default:
-            break;
+            return false;
         }
     }
 
