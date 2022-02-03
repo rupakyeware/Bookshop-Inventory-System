@@ -9,11 +9,12 @@
 
 using namespace std;
 
+#define MAX 2
+
 //Book class to handle all member functions and variables
 class Book
 {
 private:
-
     int book_id;
     string book_title;
     string book_author;
@@ -21,7 +22,6 @@ private:
     int book_price;
 
 public:
-    
     void addBook();
     void deleteBook();
     void searchBook();
@@ -34,6 +34,7 @@ public:
     string getGenre();
     int getPrice();
 };
+
 void Book::addBook() //Add book to array
 {
     cout << "Enter Book name" << endl;
@@ -144,9 +145,9 @@ int Book::getPrice()
 //Driver
 int main()
 {
-   cout<<"hi"<<endl;
-    
-    Book b1[1];
+    int booksAdded = 0;
+
+    Book book[MAX];
     while (true)
     {
         cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Exit\n";
@@ -159,7 +160,8 @@ int main()
             cin >> n;
             for (int i = 0; i < n; i++)
             {
-                b1[i].addBook();
+                book[i].addBook();
+                booksAdded++;
             }
             break;
 
@@ -172,19 +174,20 @@ int main()
         case 4: //Display
             for (int i = 0; i < n; i++)
             {
-                b1[i].displayBook();
+                book[i].displayBook();
             }
             break;
 
         case 5: //Print
         {
-            int len = sizeof(b1) / sizeof(b1[0]);
-            printBook(b1, len);
+            printBook(book, booksAdded);
             break;
         }
 
         default:
-            exit(0);
+            break;
         }
     }
+
+    return 0;
 }
