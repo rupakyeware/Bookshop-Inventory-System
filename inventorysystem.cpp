@@ -141,6 +141,8 @@ int Book::getPrice()
 //Driver
 int main()
 {
+   cout<<"hi"<<endl;
+    
     Book b1[1];
     while (true)
     {
