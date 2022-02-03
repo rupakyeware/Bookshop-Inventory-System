@@ -57,6 +57,7 @@ void Book::addBook() //Add book to array
 
 void Book::deleteBook() //Delete book from array
 {
+    //ksnfklewn sharal
 }
 
 void Book::searchBook() //Find book in arrat
@@ -143,6 +144,8 @@ int Book::getPrice()
 //Driver
 int main()
 {
+   cout<<"hi"<<endl;
+    
     Book b1[1];
     while (true)
     {
