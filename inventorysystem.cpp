@@ -25,8 +25,6 @@ public:
     void addBook();
     void deleteBook();
     void searchBook();
-    void displayBook(Book[], int);
-    void displayBook(Book[], int, int);
 
     int getId();
     string getTitle();
@@ -65,6 +63,77 @@ void Book::searchBook() //Find book in arrat
 {
 }
 
+int Book::getId()
+{
+    return book_id;
+}
+
+string Book::getTitle()
+{
+    return book_title;
+}
+string Book::getAuthor()
+{
+    return book_author;
+}
+string Book::getGenre()
+{
+    return book_genre;
+}
+int Book::getPrice()
+{
+    return book_price;
+}
+
+void printHeader()
+{
+
+    cout
+        << left
+        << setw(10)
+        << "Title"
+        << left
+        << setw(10)
+        << "Id"
+        << left
+        << setw(10)
+        << "Author"
+        << left
+        << setw(10)
+        << "Genre"
+        << left
+        << setw(10)
+        << "Price"
+        << endl;
+    cout << "---------------------------------------------" << endl;
+}
+
+void printHeader(int ch)
+{
+    string outFile = "book_details.txt";
+    ofstream hout;
+    hout.open(outFile, std::ios::out);
+
+    hout
+        << left
+        << setw(10)
+        << "Title"
+        << left
+        << setw(10)
+        << "Id"
+        << left
+        << setw(10)
+        << "Author"
+        << left
+        << setw(10)
+        << "Genre"
+        << left
+        << setw(10)
+        << "Price"
+        << endl;
+    hout << "---------------------------------------------" << endl;
+}
+
 void displayBook(Book arr[], int s) //Display all books in console window
 {
     for (int i = 0; i < s; i++)
@@ -95,8 +164,6 @@ void displayBook(Book arr[], int s, int ch) //Display all books in txt file
     ofstream out;
     out.open(outFile, std::ios::out);
 
-    printHeader();
-
     for (int i = 0; i < s; i++)
     {
         out
@@ -119,50 +186,6 @@ void displayBook(Book arr[], int s, int ch) //Display all books in txt file
     }
 }
 
-void printHeader()
-{
-    cout
-        << left
-        << setw(10)
-        << "Title"
-        << left
-        << setw(10)
-        << "Id"
-        << left
-        << setw(10)
-        << "Author"
-        << left
-        << setw(10)
-        << "Genre"
-        << left
-        << setw(10)
-        << "Price"
-        << endl;
-    cout << "---------------------------------------------" << endl;
-}
-
-int Book::getId()
-{
-    return book_id;
-}
-
-string Book::getTitle()
-{
-    return book_title;
-}
-string Book::getAuthor()
-{
-    return book_author;
-}
-string Book::getGenre()
-{
-    return book_genre;
-}
-int Book::getPrice()
-{
-    return book_price;
-}
-
 //Driver
 int main()
 {
@@ -177,8 +200,14 @@ int main()
         switch (ch)
         {
         case 1: //Adding book
-            book[booksAdded].addBook();
-            booksAdded++;
+            int n;
+            cout << "Enter number of books to add: ";
+            cin >> n;
+            while (n--)
+            {
+                book[booksAdded].addBook();
+                booksAdded++;
+            }
             break;
 
         case 2: //Delete
@@ -190,11 +219,11 @@ int main()
         case 4: //Display
             printHeader();
             displayBook(book, booksAdded);
-
             break;
 
         case 5: //Print
         {
+            printHeader(1);
             displayBook(book, booksAdded, 1);
             break;
         }
