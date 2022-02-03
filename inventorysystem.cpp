@@ -13,6 +13,7 @@ using namespace std;
 class Book
 {
 private:
+
     int book_id;
     string book_title;
     string book_author;
@@ -20,11 +21,13 @@ private:
     int book_price;
 
 public:
+    
     void addBook();
     void deleteBook();
     void searchBook();
     void displayBook();
     void printBook();
+
     int getId();
     string getTitle();
     string getAuthor();
