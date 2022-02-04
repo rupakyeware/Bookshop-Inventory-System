@@ -159,11 +159,11 @@ void displayBook(Book arr[], int s) //Display all books in console window
 }
 
 void displayBook(Book arr[], int s, int ch) //Display all books in txt file
-{
+{   
     string outFile = "book_details.txt";
     ofstream out;
-    out.open(outFile, std::ios::out);
-
+    out.open(outFile, ios::app);
+    printHeader(1);
     for (int i = 0; i < s; i++)
     {
         out
@@ -223,7 +223,6 @@ int main()
 
         case 5: //Print
         {
-            printHeader(1);
             displayBook(book, booksAdded, 1);
             break;
         }
