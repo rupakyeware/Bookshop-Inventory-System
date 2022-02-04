@@ -1,12 +1,11 @@
 // A basic C++ program that manages a bookshop inventory
 
 // Header files
-#include <cctype>
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
+#include <cctype>    //for converting to lowercase
+#include <algorithm> //for transform
+#include <iostream>  //standard
+#include <fstream>   //io stream
+#include <iomanip>   //for table style output
 using namespace std;
 
 #define MAX 50
@@ -24,7 +23,6 @@ private:
 public:
     void addBook();
     void deleteBook();
-    void searchBook();
 
     int getId();
     string getTitle();
@@ -55,11 +53,6 @@ void Book::addBook() // Add book to array
 }
 
 void Book::deleteBook() // Delete book from array
-{
-    // ksnfklewn sharal
-}
-
-void Book::searchBook() // Find book in arrat
 {
 }
 
@@ -134,6 +127,28 @@ void printHeader(int ch)
     hout << "---------------------------------------------------------------------------" << endl;
 }
 
+void displayBook(Book book)
+{
+    printHeader();
+    cout
+        << left
+        << setw(15)
+        << book.getTitle()
+        << left
+        << setw(15)
+        << book.getId()
+        << left
+        << setw(15)
+        << book.getAuthor()
+        << left
+        << setw(15)
+        << book.getGenre()
+        << left
+        << setw(15)
+        << book.getPrice()
+        << endl;
+}
+
 void displayBook(Book arr[], int s) // Display all books in console window
 {
     for (int i = 0; i < s; i++)
@@ -197,6 +212,19 @@ void clearFile()
     out.close();
 }
 
+void searchBook(Book arr[], string s2, int n) // Find book in array
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (s2.compare(arr[i].getTitle()) == 0)
+        {
+            cout << "Book found!" << endl;
+            displayBook(arr[i]);
+            break;
+        }
+    }
+}
+
 // Driver
 int main()
 {
@@ -230,7 +258,14 @@ int main()
             break;
 
         case 3: // Search
+        {
+            string name;
+            cout << "Enter name of book to search: ";
+            cin >> name;
+            transform(name.begin(), name.end(), name.begin(), ::tolower);
+            searchBook(book, name, booksAdded);
             break;
+        }
 
         case 4: // Display
             printHeader();
