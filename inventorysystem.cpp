@@ -1,6 +1,6 @@
-//A basic C++ program that manages a bookshop inventory
+// A basic C++ program that manages a bookshop inventory
 
-//Header files
+// Header files
 #include <cctype>
 #include <algorithm>
 #include <iostream>
@@ -9,9 +9,9 @@
 
 using namespace std;
 
-#define MAX 2
+#define MAX 50
 
-//Book class to handle all member functions and variables
+// Book class to handle all member functions and variables
 class Book
 {
 private:
@@ -33,33 +33,33 @@ public:
     int getPrice();
 };
 
-void Book::addBook() //Add book to array
+void Book::addBook() // Add book to array
 {
-    cout << "Enter Book name" << endl;
+    cout << "Enter Book name: ";
     cin >> book_title;
     transform(book_title.begin(), book_title.end(), book_title.begin(), ::tolower);
 
-    cout << "Enter Book id" << endl;
+    cout << "Enter Book id: ";
     cin >> book_id;
 
-    cout << "Enter Book author" << endl;
+    cout << "Enter Book author: ";
     cin >> book_author;
     transform(book_author.begin(), book_author.end(), book_author.begin(), ::tolower);
 
-    cout << "Enter Book genre" << endl;
+    cout << "Enter Book genre: ";
     cin >> book_genre;
     transform(book_genre.begin(), book_genre.end(), book_genre.begin(), ::tolower);
 
-    cout << "Enter Book price" << endl;
+    cout << "Enter Book price: ";
     cin >> book_price;
 }
 
-void Book::deleteBook() //Delete book from array
+void Book::deleteBook() // Delete book from array
 {
-    //ksnfklewn sharal
+    // ksnfklewn sharal
 }
 
-void Book::searchBook() //Find book in arrat
+void Book::searchBook() // Find book in arrat
 {
 }
 
@@ -96,16 +96,16 @@ void printHeader()
         << setw(10)
         << "Id"
         << left
-        << setw(10)
+        << setw(20)
         << "Author"
         << left
-        << setw(10)
+        << setw(15)
         << "Genre"
         << left
         << setw(10)
         << "Price"
         << endl;
-    cout << "---------------------------------------------" << endl;
+    cout << "------------------------------------------------------------" << endl;
 }
 
 void printHeader(int ch)
@@ -122,19 +122,19 @@ void printHeader(int ch)
         << setw(10)
         << "Id"
         << left
-        << setw(10)
+        << setw(20)
         << "Author"
         << left
-        << setw(10)
+        << setw(15)
         << "Genre"
         << left
         << setw(10)
         << "Price"
         << endl;
-    hout << "---------------------------------------------" << endl;
+    hout << "------------------------------------------------------------" << endl;
 }
 
-void displayBook(Book arr[], int s) //Display all books in console window
+void displayBook(Book arr[], int s) // Display all books in console window
 {
     for (int i = 0; i < s; i++)
     {
@@ -146,10 +146,10 @@ void displayBook(Book arr[], int s) //Display all books in console window
             << setw(10)
             << arr[i].getId()
             << left
-            << setw(10)
+            << setw(20)
             << arr[i].getAuthor()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getGenre()
             << left
             << setw(10)
@@ -158,8 +158,8 @@ void displayBook(Book arr[], int s) //Display all books in console window
     }
 }
 
-void displayBook(Book arr[], int s, int ch) //Display all books in txt file
-{   
+void displayBook(Book arr[], int s, int ch) // Display all books in txt file
+{
     string outFile = "book_details.txt";
     ofstream out;
     out.open(outFile, ios::app);
@@ -174,19 +174,30 @@ void displayBook(Book arr[], int s, int ch) //Display all books in txt file
             << setw(10)
             << arr[i].getId()
             << left
-            << setw(10)
+            << setw(20)
             << arr[i].getAuthor()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getGenre()
             << left
             << setw(10)
             << arr[i].getPrice()
             << endl;
     }
+
+    out.close();
 }
 
-//Driver
+void clearFile()
+{
+    string outFile = "book_details.txt";
+    ofstream out;
+    out.open(outFile, ios::out);
+    out << "";
+    out.close();
+}
+
+// Driver
 int main()
 {
     int booksAdded = 0;
@@ -194,36 +205,53 @@ int main()
     Book book[MAX];
     while (true)
     {
-        cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Exit\n";
+        cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Clear file\n7. Exit\n";
         int ch;
         cin >> ch;
         switch (ch)
         {
-        case 1: //Adding book
+        case 1: // Adding book
             int n;
             cout << "Enter number of books to add: ";
             cin >> n;
             while (n--)
             {
+                cout << "\nEnter details for book " << booksAdded + 1 << endl;
+                cout << "---------------------------------------------" << endl;
                 book[booksAdded].addBook();
                 booksAdded++;
             }
             break;
 
-        case 2: //Delete
+        case 2: // Delete
             break;
 
-        case 3: //Search
+        case 3: // Search
             break;
 
-        case 4: //Display
+        case 4: // Display
             printHeader();
             displayBook(book, booksAdded);
             break;
 
-        case 5: //Print
+        case 5: // Print
         {
-            displayBook(book, booksAdded, 1);
+            cout << "Printing..." << endl;
+            try
+            {
+                displayBook(book, booksAdded, 1);
+            }
+            catch (const std::exception &e)
+            {
+                cout << e.what() << endl;
+            }
+            cout << "Printed successfully!" << endl;
+            break;
+        }
+
+        case 6:
+        {
+            clearFile();
             break;
         }
 
