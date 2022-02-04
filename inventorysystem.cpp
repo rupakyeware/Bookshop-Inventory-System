@@ -90,13 +90,13 @@ void printHeader()
 
     cout
         << left
-        << setw(10)
+        << setw(15)
         << "Title"
         << left
-        << setw(10)
+        << setw(15)
         << "Id"
         << left
-        << setw(20)
+        << setw(15)
         << "Author"
         << left
         << setw(15)
@@ -105,7 +105,7 @@ void printHeader()
         << setw(10)
         << "Price"
         << endl;
-    cout << "------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------" << endl;
 }
 
 void printHeader(int ch)
@@ -116,22 +116,22 @@ void printHeader(int ch)
 
     hout
         << left
-        << setw(10)
+        << setw(15)
         << "Title"
         << left
-        << setw(10)
+        << setw(15)
         << "Id"
         << left
-        << setw(20)
+        << setw(15)
         << "Author"
         << left
         << setw(15)
         << "Genre"
         << left
-        << setw(10)
+        << setw(15)
         << "Price"
         << endl;
-    hout << "------------------------------------------------------------" << endl;
+    hout << "---------------------------------------------------------------------------" << endl;
 }
 
 void displayBook(Book arr[], int s) // Display all books in console window
@@ -140,19 +140,19 @@ void displayBook(Book arr[], int s) // Display all books in console window
     {
         cout
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getTitle()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getId()
             << left
-            << setw(20)
+            << setw(15)
             << arr[i].getAuthor()
             << left
             << setw(15)
             << arr[i].getGenre()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getPrice()
             << endl;
     }
@@ -168,19 +168,19 @@ void displayBook(Book arr[], int s, int ch) // Display all books in txt file
     {
         out
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getTitle()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getId()
             << left
-            << setw(20)
+            << setw(15)
             << arr[i].getAuthor()
             << left
             << setw(15)
             << arr[i].getGenre()
             << left
-            << setw(10)
+            << setw(15)
             << arr[i].getPrice()
             << endl;
     }
@@ -205,19 +205,22 @@ int main()
     Book book[MAX];
     while (true)
     {
-        cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Clear file\n7. Exit\n";
         int ch;
+        cout << "------------------------------------------------------------------------------------------------" << endl;
+        cout << "Enter your choice\n1. Add books\n2. Delete book\n3. Find book\n4. Display books\n5. Print file\n6. Clear file\n7. Exit\n";
         cin >> ch;
+        cout << "------------------------------------------------------------------------------------------------" << endl;
         switch (ch)
         {
-        case 1: // Adding book
+        case 1: // Add book
             int n;
             cout << "Enter number of books to add: ";
             cin >> n;
+            cout << "------------------------------------------------------------------------------------------------" << endl;
             while (n--)
             {
                 cout << "\nEnter details for book " << booksAdded + 1 << endl;
-                cout << "---------------------------------------------" << endl;
+                cout << "------------------------------------------------------------------------------------------------" << endl;
                 book[booksAdded].addBook();
                 booksAdded++;
             }
@@ -234,14 +237,14 @@ int main()
             displayBook(book, booksAdded);
             break;
 
-        case 5: // Print
+        case 5: // Print text file
         {
             cout << "Printing..." << endl;
             try
             {
                 displayBook(book, booksAdded, 1);
             }
-            catch (const std::exception &e)
+            catch (exception &e)
             {
                 cout << e.what() << endl;
             }
@@ -249,7 +252,7 @@ int main()
             break;
         }
 
-        case 6:
+        case 6: // Erase text file
         {
             clearFile();
             break;
