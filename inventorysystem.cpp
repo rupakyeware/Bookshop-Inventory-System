@@ -22,7 +22,6 @@ private:
 
 public:
     void addBook();
-    void deleteBook();
 
     int getId();
     string getTitle();
@@ -50,10 +49,6 @@ void Book::addBook() // Add book to array
 
     cout << "Enter Book price: ";
     cin >> book_price;
-}
-
-void Book::deleteBook() // Delete book from array
-{
 }
 
 int Book::getId()
